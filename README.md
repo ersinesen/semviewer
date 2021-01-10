@@ -1,7 +1,8 @@
-# semviwever: Scanning Electron Microscope Data Viwer
+# semviewer: Scanning Electron Microscope Data Viwer
 
 A three.js based web application that displays sem data in NRRD format.
 
+![sample screen](semviewer.png)
 
 # To run locally
 
@@ -19,6 +20,8 @@ http-server -p 3000 --cors
 
 
 ## Notes
+
+* To create nrrd file from a set of png files use png2nrrd.py and correct the header as below.
 
 * Sample NRRD header that Three.js can read
 
