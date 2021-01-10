@@ -1,4 +1,4 @@
-# semviewer: Scanning Electron Microscope Data Viwer
+# semviewer: Scanning Electron Microscope Data Viewer
 
 A three.js based web application that displays scanning electron microscope data in NRRD format. [Demo](https://semviewer-flq77dpaga-ue.a.run.app/)
 
