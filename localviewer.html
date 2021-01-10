@@ -70,7 +70,7 @@
 
 				const loader = new NRRDLoader();
 				// Load sample FIBSEM data served locally
-				loader.load( "output.nrrd", function ( volume ) {
+				loader.load( "http://localhost:8080/output.nrrd", function ( volume ) {
 
 					//box helper to see the extend of the volume
 					const geometry = new THREE.BoxBufferGeometry( volume.xLength, volume.yLength, volume.zLength );

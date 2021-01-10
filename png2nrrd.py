@@ -28,10 +28,10 @@ import cv2
 
 DATAPATH = '/mnt/35888f2a-be92-4a2f-8a27-6a8732423f1a/Data/FIB-25'
 START = 4000
-NUMIMG = 50
+NUMIMG = 34
 STEP = 10
-W = 300
-H = 300
+W = 250
+H = 250
 
 # Treat this data array as a 3D volume using C-order indexing
 data = np.zeros((NUMIMG, 2*W, 2*H))
@@ -52,5 +52,5 @@ for i in range(START, START+ (NUMIMG*STEP), STEP):
 # Save the NRRD object with the correct index order
 header = {}
 header['encoding'] = 'ascii'
-nrrd.write('output.nrrd', data, header=header, index_order='C')
+nrrd.write('output2.nrrd', data, header=header, index_order='C')
 

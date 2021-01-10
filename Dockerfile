@@ -10,9 +10,12 @@ FROM node
 
 RUN apt update
 
-COPY index.js index.js
-COPY semviewer.html semviewer.html
-COPY output.nrrd output.nrrd
+# Dont use / as working directory since gcloud gives error for npm install
+WORKDIR /home/node
+
+COPY index.js /home/node/index.js
+COPY semviewer.html /home/node/semviewer.html
+COPY output2.nrrd /home/node/output.nrrd
 
 # Install node dependencies.
 RUN npm i express

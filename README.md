@@ -1,8 +1,9 @@
 # semviewer: Scanning Electron Microscope Data Viwer
 
-A three.js based web application that displays sem data in NRRD format.
+A three.js based web application that displays scanning electron microscope data in NRRD format. [Demo](https://semviewer-flq77dpaga-ue.a.run.app/)
 
 ![sample screen](semviewer.png)
+
 
 ## Run locally
 
@@ -22,7 +23,7 @@ npm install http-server -g
 http-server -p 8080 --cors
 ```
 
-* Open semviewer.html in a browser
+* Open localviewer.html in a browser
 
 
 ## Run in Docker container
@@ -36,9 +37,18 @@ docker run -p 8080:8080 semviewer
 * Open http://localhost:8080 in browser
 
 
+## GCloud Deployment
+
+```
+gcloud auth login
+gcloud builds submit --tag gcr.io/[PROJECTID]/semviewer
+gcloud run deploy --image  gcr.io/[PROJECTID]/semviewer
+```
+
+
 ## Notes
 
-* To create nrrd file from a set of png files use png2nrrd.py and correct the header as below.
+* To create nrrd file from a set of png files use ```png2nrrd.py```. Update datapath and correct the header as below.
 
 * Sample NRRD header that Three.js can read
 
@@ -56,3 +66,5 @@ endian: little
 encoding: ascii
 space origin: (-119.53000000000002,119.53000000000007,84.000000000000028)
 ```
+
+* Response size limit is 32MB in google cloud run. Hence nrrd file cant be served from container. 
