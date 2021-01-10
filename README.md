@@ -4,7 +4,13 @@ A three.js based web application that displays sem data in NRRD format.
 
 ![sample screen](semviewer.png)
 
-# To run locally
+## Run locally
+
+* Unzip sample nrrd file
+
+```
+gunzip output.nrrd.gz
+```
 
 * Run a web server locally to serve output.nrrd file
 
@@ -13,10 +19,21 @@ A three.js based web application that displays sem data in NRRD format.
 npm install http-server -g
 
 #run
-http-server -p 3000 --cors
+http-server -p 8080 --cors
 ```
 
 * Open semviewer.html in a browser
+
+
+## Run in Docker container
+
+* Build container and run
+```
+docker build -t semviewer .
+docker run -p 8080:8080 semviewer
+```
+
+* Open http://localhost:8080 in browser
 
 
 ## Notes
