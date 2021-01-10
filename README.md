@@ -67,4 +67,4 @@ encoding: ascii
 space origin: (-119.53000000000002,119.53000000000007,84.000000000000028)
 ```
 
-* Response size limit is 32MB in google cloud run. Hence nrrd file cant be served from container. 
+* Response size limit is 32MB in google cloud run. Hence large nrrd files cant be served from container. 
