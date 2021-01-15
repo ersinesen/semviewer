@@ -17,7 +17,7 @@ gunzip output.nrrd.gz
 gunzip my.obj.gz
 ```
 
-* Run a web server locally to serve output.nrrd file
+* Run a web server locally to serve output.nrrd and my.obj files
 
 ```
 #install (it requires nodejs/npm)
@@ -74,3 +74,7 @@ space origin: (-119.53000000000002,119.53000000000007,84.000000000000028)
 ```
 
 * Response size limit is 32MB in google cloud run. Hence large nrrd files cant be served from container. 
+
+## Links
+
+* [Eyewire neuron mesh samples](https://forum.eyewire.org/t/3d-neuron-renders/1251)
