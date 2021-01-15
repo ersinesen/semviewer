@@ -102,16 +102,16 @@ for i in range(4000, 5000, 10):
   cv2.waitKey(500)
 
   # SLIC or felzenszwalb
-  col = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-  image_ = slic(col, n_segments=256)
+  #col = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+  #image_ = slic(col, n_segments=256)
   #image_ = seg.felzenszwalb(col) 
   #image_ = quickshift(col, kernel_size=3, max_dist=6, ratio=0.5)
   #gradient = sobel(img)
   #image_ = watershed(gradient, markers=250, compactness=0.001)
 
-  res = color.label2rgb(image_, col, kind='avg')
-  cv2.imshow('SLIC/felzenszwalb', res)
-  cv2.waitKey(500)
+  #res = color.label2rgb(image_, col, kind='avg')
+  #cv2.imshow('SLIC/felzenszwalb', res)
+  #cv2.waitKey(500)
 
   # Snakes
   #sn = Snakes(img)

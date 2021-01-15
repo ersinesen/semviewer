@@ -1,16 +1,20 @@
 # semviewer: Scanning Electron Microscope Data Viewer
 
-A three.js based web application that displays scanning electron microscope data in NRRD format. [Demo](https://semviewer-flq77dpaga-ue.a.run.app/)
+A three.js based web application that displays scanning electron microscope data. [Demo](https://semviewer-flq77dpaga-ue.a.run.app/)
 
 ![sample screen](semviewer.png)
 
 
+![sample segmented neuron mesh](mesh.png)
+
+
 ## Run locally
 
-* Unzip sample nrrd file
+* Unzip sample files
 
 ```
 gunzip output.nrrd.gz
+gunzip my.obj.gz
 ```
 
 * Run a web server locally to serve output.nrrd file
@@ -24,6 +28,8 @@ http-server -p 8080 --cors
 ```
 
 * Open localviewer.html in a browser
+
+* Open mesh.html in a browser
 
 
 ## Run in Docker container

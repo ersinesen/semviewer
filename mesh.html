@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Neuron Mesh</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+
+	<body>
+
+		<script type="module">
+
+			
+			import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+			import { OBJLoader } from 'https://unpkg.com/three/examples/jsm/loaders/OBJLoader.js';
+			
+			import { GLTFLoader } from 'https://unpkg.com/three/examples/jsm/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'https://unpkg.com/three/examples/jsm/controls/OrbitControls.js';
+
+			let container;
+
+			let camera, scene, renderer;
+
+			let mouseX = 0, mouseY = 0;
+
+			let windowHalfX = window.innerWidth / 2;
+			let windowHalfY = window.innerHeight / 2;
+
+			let object;
+
+			init();
+			render()
+
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.z = 10;
+				camera.position.y = 30;
+				camera.position.x = 40;
+
+				// scene
+
+				scene = new THREE.Scene();
+
+				const ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
+				scene.add( ambientLight );
+
+				const pointLight = new THREE.PointLight( 0xffffff, 0.8 );
+				camera.add( pointLight );
+				scene.add( camera );
+
+				// manager
+
+				function loadModel() {
+
+					object.traverse( function ( child ) {
+
+						// no texture
+						//if ( child.isMesh ) child.material.map = texture;
+
+					} );
+
+					object.position.y = 0;
+					object.position.x = 0;
+					object.position.z = 0;
+					
+					scene.add( object );
+					render()
+
+
+				}
+
+				const manager = new THREE.LoadingManager( loadModel );
+
+				manager.onProgress = function ( item, loaded, total ) {
+
+					console.log( item, loaded, total );
+
+				};
+
+				// no texture
+				//const textureLoader = new THREE.TextureLoader( manager );
+				//const texture = textureLoader.load( 'uv_grid_opengl.jpg' );
+
+				// model
+				function onProgress( xhr ) {
+
+					if ( xhr.lengthComputable ) {
+
+						const percentComplete = xhr.loaded / xhr.total * 100;
+						console.log( 'model ' + Math.round( percentComplete, 2 ) + '% downloaded' );
+
+					}
+
+				}
+
+				function onError() {}
+
+				const loader = new OBJLoader( manager );
+				//const loader = new GLTFLoader( manager );
+
+				
+				loader.load( 'http://localhost:8080/my.obj', function ( obj ) {
+
+					object = obj;
+
+				}, onProgress, onError );
+
+
+				// Rededer object
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+
+				// Mouse controls
+				const controls = new OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render ); // use if there is no animation loop
+				controls.minDistance = 2;
+				controls.maxDistance = 100;
+				controls.target.set( 0, 0, -0.2 );
+				controls.update();
+
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				render()
+
+			}
+
+	
+
+			function render() {
+
+				renderer.render( scene, camera );
+				//console.log("Camerea position:"+ camera.position.x + " " + camera.position.y + " " + camera.position.z)
+
+			}
+
+		</script>
+
+	</body>
+</html>
+
+
+			
+
